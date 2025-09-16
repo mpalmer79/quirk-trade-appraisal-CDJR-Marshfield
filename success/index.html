@@ -3,10 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title data-i18n="successTitle">Thanks! - Quirk CDJR Dorchester</title>
+  <title data-i18n="successTitle">Thanks! - Quirk CDJR Marshfield</title>
   <link rel="stylesheet" href="/assets/styles.css" />
+  <style>
+    /* Watermark background */
+    :root { --wm-opacity: 0.12; } /* tweak 0.08–0.18 to taste */
+
+    body.has-watermark {
+      position: relative;
+      min-height: 100vh;
+    }
+    body.has-watermark::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("/assets/quirk-lot.png");
+      background-repeat: no-repeat;
+      background-position: top center; /* keep sign near the top */
+      background-size: contain;        /* show full lot image */
+      background-color: #fff;          /* fill behind transparent PNG */
+      opacity: var(--wm-opacity);
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* Ensure the card sits above the watermark */
+    body.has-watermark main {
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 768px) {
+      :root { --wm-opacity: 0.10; }    /* slightly lighter on small screens */
+    }
+  </style>
 </head>
-<body>
+<body class="has-watermark">
   <main style="max-width:720px;margin:40px auto;background:#fff;padding:24px;
                border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">
     <h1 style="text-align:center;margin:0 0 10px;color:#004a2f" data-i18n="successHeading">
