@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/assets/styles.css" />
   <style>
     /* Watermark background */
-    :root { --wm-opacity: 0.12; } /* tweak 0.08–0.18 to taste */
+    :root { --wm-opacity: 0.12; } /* tweak 0.08–0.18 if you want lighter/darker */
 
     body.has-watermark {
       position: relative;
@@ -19,20 +19,19 @@
       inset: 0;
       background-image: url("/assets/quirk-lot.png");
       background-repeat: no-repeat;
-      background-position: top center; /* keep sign near the top */
-      background-size: contain;        /* show full lot image */
-      background-color: #fff;          /* fill behind transparent PNG */
+      background-position: top center;
+      background-size: contain;       /* show the lot image proportionally */
+      background-color: #fff;         /* white base behind transparent PNG */
       opacity: var(--wm-opacity);
       z-index: 0;
       pointer-events: none;
     }
-    /* Ensure the card sits above the watermark */
     body.has-watermark main {
       position: relative;
       z-index: 1;
     }
     @media (max-width: 768px) {
-      :root { --wm-opacity: 0.10; }    /* slightly lighter on small screens */
+      :root { --wm-opacity: 0.10; }   /* lighten on smaller screens */
     }
   </style>
 </head>
@@ -65,7 +64,6 @@
     </div>
   </main>
 
-  <!-- Load the same app.js to enable Spanish translation -->
   <script src="/assets/app.js"></script>
 </body>
 </html>
