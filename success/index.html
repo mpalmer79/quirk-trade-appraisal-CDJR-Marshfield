@@ -3,67 +3,84 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
   <title data-i18n="successTitle">Thanks! - Quirk CDJR Marshfield</title>
   <link rel="stylesheet" href="/assets/styles.css" />
-  <style>
-    /* Watermark background */
-    :root { --wm-opacity: 0.12; } /* tweak 0.08–0.18 if you want lighter/darker */
 
-    body.has-watermark {
-      position: relative;
+  <style>
+    /* Desktop/tablet: center the card and show a soft lot watermark */
+    body.success {
       min-height: 100vh;
+      display: flex;
+      align-items: center;          /* vertical centering */
+      justify-content: center;      /* horizontal centering */
+      padding: 40px 16px;           /* breathing room */
+      background:
+        /* overlay controls overall darkness of the background image */
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+        url('/assets/quirk-lot.png') center / cover no-repeat fixed;
     }
-    body.has-watermark::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: url("/assets/quirk-lot.png");
-      background-repeat: no-repeat;
-      background-position: top center;
-      background-size: contain;       /* show the lot image proportionally */
-      background-color: #fff;         /* white base behind transparent PNG */
-      opacity: var(--wm-opacity);
-      z-index: 0;
-      pointer-events: none;
+
+    /* The white “library card” */
+    main.success-card {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255,255,255,0.50);  /* 50% white */
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
     }
-    body.has-watermark main {
-      position: relative;
-      z-index: 1;
+
+    h1 { color:#004a2f; margin:0 0 10px; }
+    p.lead { margin:0 0 18px; }
+    .btnrow { display:flex; gap:10px; justify-content:center; margin-top:18px; }
+    .btnrow a { text-decoration:none; }
+
+    .brand-img {
+      width:100%;
+      max-width:720px;
+      height:auto;
+      display:block;
+      margin:32px auto 0;
+      cursor:pointer;
     }
-    @media (max-width: 768px) {
-      :root { --wm-opacity: 0.10; }   /* lighten on smaller screens */
+
+    /* Mobile-only: move card near the top & keep it 50% opaque */
+    @media (max-width: 640px) {
+      body.success {
+        align-items: flex-start;   /* push card toward the top */
+        padding-top: 16px;         /* small breathing room */
+      }
+      main.success-card {
+        background: rgba(255,255,255,0.50); /* keep at 50% on phones too */
+      }
+      .btnrow { flex-direction: column; }
     }
   </style>
 </head>
-<body class="has-watermark">
-  <main style="max-width:720px;margin:40px auto;background:#fff;padding:24px;
-               border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">
-    <h1 style="text-align:center;margin:0 0 10px;color:#004a2f" data-i18n="successHeading">
-      Thank you!
-    </h1>
-    <p style="text-align:center;font-size:16px" data-i18n="successMessage">
+
+<body class="success">
+  <main class="success-card">
+    <h1 data-i18n="successHeading">Thank you!</h1>
+    <p class="lead" data-i18n="successMessage">
       We received your trade-in details. A Quirk CDJR Marshfield specialist will contact you shortly.
     </p>
 
-    <div style="display:flex;gap:10px;justify-content:center;margin-top:18px">
-      <a class="spanish-btn" href="/" style="text-decoration:none" data-i18n="submitAnother">
-        Submit another vehicle
-      </a>
-      <a class="ghost-btn" href="https://www.quirkchryslerdodgejeepram.com" target="_blank" 
-         rel="noopener noreferrer" style="text-decoration:none" data-i18n="backToDealer">
+    <div class="btnrow">
+      <a class="spanish-btn" href="/" data-i18n="submitAnother">Submit another vehicle</a>
+      <!-- Update this link if you have a specific Marshfield site URL -->
+      <a class="ghost-btn" href="https://www.quirkcars.com/" target="_blank" rel="noopener noreferrer" data-i18n="backToDealer">
         Back to Quirk CDJR Marshfield
       </a>
     </div>
 
-    <!-- Logo inside same white card -->
-    <div style="margin-top:32px; text-align:center;">
-      <a href="https://www.quirkchryslerdodgejeepram.com" target="_blank" rel="noopener noreferrer">
-        <img src="/assets/quirkworks-new.jpg" alt="Quirk Works Logo"
-             style="width:100%; max-width:720px; height:auto; display:block; margin:0 auto; cursor:pointer;" />
-      </a>
-    </div>
+    <a href="https://www.quirkcars.com/" target="_blank" rel="noopener noreferrer">
+      <img class="brand-img" src="/assets/quirkworks-new.jpg" alt="Quirk Works Logo">
+    </a>
   </main>
 
+  <!-- Dealer + language logic (if used globally) -->
   <script src="/assets/app.js"></script>
 </body>
 </html>
